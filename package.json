@@ -1,0 +1,71 @@
+{
+  "name": "code-bro-rpc",
+  "displayName": "Code Bro RPC",
+  "description": "Muestra en Discord qué lenguaje, archivo y proyecto estás editando en VS Code.",
+  "version": "0.1.0",
+  "publisher": "kerneldev",
+  "license": "SEE LICENSE IN LICENSE",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/santixit/code-bro-rpc.git"
+  },
+  "homepage": "https://github.com/santixit/code-bro-rpc#readme",
+  "bugs": {
+    "url": "https://github.com/santixit/code-bro-rpc/issues"
+  },
+  "engines": { "vscode": "^1.85.0" },
+  "categories": ["Other"],
+  "activationEvents": ["onStartupFinished"],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      { "command": "codeBroRpc.start", "title": "Code Bro RPC: Iniciar presencia" },
+      { "command": "codeBroRpc.stop", "title": "Code Bro RPC: Detener presencia" }
+    ],
+    "configuration": {
+      "title": "Code Bro RPC",
+      "properties": {
+        "codeBroRpc.applicationId": {
+          "type": "string", "default": "1556730043995136100", "scope": "machine",
+          "description": "ID de la aplicación creada en Discord Developer Portal."
+        },
+        "codeBroRpc.showWorkspace": {
+          "type": "boolean", "default": true,
+          "description": "Mostrar el nombre de la carpeta/proyecto en Discord."
+        },
+        "codeBroRpc.showFile": {
+          "type": "boolean", "default": true,
+          "description": "Mostrar el nombre del archivo activo en Discord."
+        },
+        "codeBroRpc.showLanguage": {
+          "type": "boolean", "default": true,
+          "description": "Mostrar el lenguaje detectado por VS Code en Discord."
+        },
+        "codeBroRpc.largeImage": {
+          "type": "string", "default": "vscode",
+          "description": "Imagen predeterminada: clave de asset de Discord o URL directa. Se usa cuando no hay logo para el lenguaje."
+        },
+        "codeBroRpc.languageImages": {
+          "type": "object", "default": {},
+          "description": "Mapa opcional de languageId de VS Code a URL directa PNG/GIF para personalizar el logo por lenguaje."
+        },
+        "codeBroRpc.updateInterval": {
+          "type": "number", "default": 15, "minimum": 15, "maximum": 60,
+          "description": "Intervalo mínimo entre actualizaciones de Discord, en segundos."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "dependencies": { "discord-rpc": "^4.0.1" },
+  "devDependencies": {
+    "@types/node": "^22.13.10",
+    "@types/vscode": "^1.85.0",
+    "@types/discord-rpc": "^4.0.0",
+    "typescript": "^5.8.2"
+  }
+}

@@ -1,0 +1,9 @@
+.vscode/**
+.vscode-test/**
+src/**
+tsconfig.json
+*.tsbuildinfo
+out/**/*.map
+.gitignore
+.vscodeignore
+code-bro-rpc-*.vsix
